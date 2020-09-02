@@ -1,6 +1,6 @@
 class Api::ProductsController < ApplicationController
   def show_products
-    @products = Product.last
+    @product = Product.first
     render "product.json.jb"
   end
 

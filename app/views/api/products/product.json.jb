@@ -1,7 +1,6 @@
 {
-  product: @products,
-  name: @name,
-  price: @price,
-  image_url: @image_url,
-  description: @description,
+  name: @product.name,
+  price: @product.price,
+  image_url: @product.image_url,
+  description: @product.description,
 }
