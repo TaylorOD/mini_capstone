@@ -1,6 +1,6 @@
 json = []
 
-@all_products.each do |product|
+@products.each do |product|
   product_hash = {
     id: product.id,
     name: product.name,
