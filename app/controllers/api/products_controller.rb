@@ -22,8 +22,10 @@ class Api::ProductsController < ApplicationController
   end
 
   def update
+    # how does this search work?
     @product = Product.find_by(id: params[:id])
 
+    # how do these gates work?
     @product.name = params[:name] || @product.name
     @product.price = params[:price] || @product.price
     @product.image_url = params[:image_url] || @product.image_url
