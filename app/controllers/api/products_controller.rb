@@ -17,8 +17,11 @@ class Api::ProductsController < ApplicationController
       image_url: params[:image_url],
       description: params[:description],
     )
-    @product.save
-    render "show.json.jb"
+    if @product.save
+      render "show.json.jb"
+    else
+      render json: { errors: @product.errors.full_message }
+    end
   end
 
   def update
