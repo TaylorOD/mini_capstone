@@ -7,8 +7,20 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Product.create([
-  { name: "Huggle Hoodie - As Seen On TV", price: 26.95, image_url: "https://images-na.ssl-images-amazon.com/images/I/91YYqHQs6uL._AC_SL1500_.jpg", description: "Introducing huggle hoodie the world's most comfortable oversized hoodie that combines the warmth of a cozy blanket with the comfort of your favorite hoodie. Made from ultra-soft Fleece and lined with ultimate in warming Sherpa comfort!" },
-  { name: "Ontel 5 Second Fix - Liquid-Plastice Welding Tool - As Seen On TV", price: 19.99, image_url: "https://images-na.ssl-images-amazon.com/images/I/71LbFXEuC3L._AC_SL1000_.jpg", description: "5 Second Fix is a super powered liquid plastic welding compound that you can use to quickly and easily make permanent seals and repairs." },
-  { name: "Pillow Pad - As Seen On TV", price: 19.99, image_url: "https://images-na.ssl-images-amazon.com/images/I/91YYqHQs6uL._AC_SL1500_.jpg", description: "Are you tired of trying to hold up your device or book while sitting or lying down? As soon as you're able to find a comfortable position and relax, it falls over! Introducing pillow pad, The multi-angle tablet soft stand!" },
-  { name: "Miracle Copper Socks - As Seen On TV", price: 8.48, image_url: "https://images-na.ssl-images-amazon.com/images/I/71tcHh8t0GL._AC_SL1500_.jpg", description: "Miracle Copper Socks use copper-infused fibers and graduated mild (8-15 mmHg) compression to soothe swollen feet and legs, boost circulation, reduce swelling and help relieve aches and soreness. Breathable fabric controls odor and keeps feet dry." },
+  { name: "The Beatles - Abbey Roac", price: 20.64, image_url: " ", description: " " },
+  { name: "Michael Jackson - Thriller", price: 17.18, image_url: " ", description: " " },
+  { name: "Pink Floyd - Dark Side of the Moon", price: 23.49, image_url: " ", description: " " },
+  { name: "Fleetwood Mac - Rumours", price: 23.50, image_url: " ", description: " " },
+  { name: "J. Cole - Forest Hill Drive", price: 17.40, image_url: " ", description: " " },
+  { name: "Tame Impala - Currents", price: 22.99, image_url: " ", description: " " },
+  { name: "Miles Davis - Kind Of Blue", price: 20.69, image_url: " ", description: " " },
+  { name: "Tyler, The Creator - IGOR", price: 22.43, image_url: " ", description: " " },
+  { name: "Weezer - Blue Album", price: 12.98, image_url: " ", description: " " },
+  { name: "Nirvana - Nevermind", price: 20.33, image_url: " ", description: " " },
+  { name: "Adele - 21", price: 17.09, image_url: " ", description: " " },
+  { name: "Kendrick Lamar - Good Kid, m.A.A.d City", price: 17.90, image_url: " ", description: " " },
+  { name: "Tom Petty & the Heartbreakers - Greatest Hits", price: 25.98, image_url: " ", description: " " },
+  { name: "Johnny Cash - The Essential Johnny Cash", price: 21.96, image_url: " ", description: " " },
+  { name: "Pearl Jam - Ten", price: 14.49, image_url: " ", description: " " },
+  { name: "Bob Marley - Legend", price: 18.95, image_url: " ", description: " " },
 ])
