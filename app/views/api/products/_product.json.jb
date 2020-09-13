@@ -2,8 +2,11 @@
   id: product.id,
   name: product.name,
   price: product.price,
-  image_url: product.image_url,
   description: product.description,
+  # tax: product.tax,
+  # total: product.total,
+  supplier: product.supplier,
+  images: product.images,
   formatted: {
     price: number_to_currency(product.price),
   },

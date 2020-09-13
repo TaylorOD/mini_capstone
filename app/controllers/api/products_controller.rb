@@ -32,10 +32,11 @@ class Api::ProductsController < ApplicationController
     @product = Product.new(
       name: params[:name],
       price: params[:price],
-      image_url: params[:image_url],
+      # image_url: params[:image_url],
       description: params[:description],
     )
     if @product.save
+      Image.create!(produce_id: @product.id, url: params[:image_url])
       render "show.json.jb"
     else
       render json: { errors: @product.errors.full_messages }, status: :bad_request
@@ -49,7 +50,7 @@ class Api::ProductsController < ApplicationController
     # how do these gates work?
     @product.name = params[:name] || @product.name
     @product.price = params[:price] || @product.price
-    @product.image_url = params[:image_url] || @product.image_url
+    # @product.image_url = params[:image_url] || @product.image_url
     @product.description = params[:description] || @product.description
 
     if @product.save
