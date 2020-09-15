@@ -31,7 +31,7 @@ Product.create([
 
 Image.create!(product_id: 1, url: "https://images-na.ssl-images-amazon.com/images/I/81dUVKQDBEL._SL1200_.jpg")
 Image.create!(product_id: 2, url: "https://images-na.ssl-images-amazon.com/images/I/81wfye0hsDL._SL1500_.jpg")
-Image.create!(product_id: 3, url: "https://images-na.ssl-images-amazon.com/images/I/61hw9WloObL._SL1500_.jpg")
+Image.create!(product_id: 3, url: "https://images-na.sPsl-images-amazon.com/images/I/61hw9WloObL._SL1500_.jpg")
 Image.create!(product_id: 4, url: "https://images-na.ssl-images-amazon.com/images/I/71HWqbh0BLL._SL1425_.jpg")
 Image.create!(product_id: 5, url: "https://images-na.ssl-images-amazon.com/images/I/71XstPLx8PL._SL1500_.jpg")
 Image.create!(product_id: 6, url: "https://images-na.ssl-images-amazon.com/images/I/91sqAJFwmJL._SL1400_.jpg")
