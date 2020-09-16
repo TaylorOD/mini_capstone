@@ -1,4 +1,6 @@
 class Api::ProductsController < ApplicationController
+  before_action :authenticate_admin, except: [:index, :show]
+
   def index
     # http://localhost:3000/api/products?search=search_text - url example
     @products = Product.all
@@ -33,9 +35,10 @@ class Api::ProductsController < ApplicationController
       name: params[:name],
       price: params[:price],
       description: params[:description],
+      supplier_id: params[:supplier_id],
     )
     if @product.save
-      Image.create!(produce_id: @product.id, url: params[:image_url])
+      Image.create!(product_id: @product.id, url: params[:image_url])
       render "show.json.jb"
     else
       render json: { errors: @product.errors.full_messages }, status: :bad_request
