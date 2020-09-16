@@ -1,8 +1,18 @@
 class Api::OrdersController < ApplicationController
   def index
     if current_user
-      @orders = Order.where(user_id: current_user.id)
+      @orders = current_user.orders
       render "index.json.jb"
+    else
+      render json: { errors: "Log in to see your orders." }, status: :bad_request
+    end
+  end
+
+  def show
+    if current_user
+      @order = current_user.orders.find_by(id: params[:id])
+      # @order = current_user.orders
+      render "show.json.jb"
     else
       render json: { errors: "Log in to see your orders." }, status: :bad_request
     end
