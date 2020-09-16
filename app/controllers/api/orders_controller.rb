@@ -1,12 +1,33 @@
 class Api::OrdersController < ApplicationController
-  def create
-    @order = Order.new(
-      user_id: current_user.id,
-      product_id: params[:product_id],
-      quantity: params[:quantity],
-    )
+  def index
+    if current_user
+      @orders = Order.where(user_id: current_user.id)
+      render "index.json.jb"
+    else
+      render json: { errors: "Log in to see your orders." }, status: :bad_request
+    end
+  end
 
-    @order.save
-    render "show.json.jb"
+  def create
+    if current_user
+      product = Product.find_by(id: params[:product_id])
+      subtotal = product.price * params[:quantity].to_i
+      tax = 0.9 * params[:quantity].to_i
+      total = subtotal + tax
+
+      @order = Order.new(
+        user_id: current_user.id,
+        product_id: params[:product_id],
+        quantity: params[:quantity],
+        subtotal: subtotal,
+        tax: tax,
+        total: total,
+      )
+
+      @order.save
+      render "show.json.jb"
+    else
+      render json: { errors: "Log in to place an order." }, status: :bad_request
+    end
   end
 end

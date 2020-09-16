@@ -43,19 +43,19 @@ class Api::ProductsController < ApplicationController
   end
 
   def update
-    # how does this search work?
-    @product = Product.find_by(id: params[:id])
+    if current_user
+      @product = Product.find_by(id: params[:id])
+      @product.name = params[:name] || @product.name
+      @product.price = params[:price] || @product.price
+      @product.description = params[:description] || @product.description
 
-    # how do these gates work?
-    @product.name = params[:name] || @product.name
-    @product.price = params[:price] || @product.price
-    # @product.image_url = params[:image_url] || @product.image_url
-    @product.description = params[:description] || @product.description
-
-    if @product.save
-      render "show.json.jb"
+      if @product.save
+        render "show.json.jb"
+      else
+        render json: { errors: @product.errors.full_messages }, status: :bad_request
+      end
     else
-      render json: { errors: @product.errors.full_messages }, status: :bad_request
+      render json: { errors: "Log in to update an item." }, status: :bad_request
     end
   end
 
