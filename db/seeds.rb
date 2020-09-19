@@ -45,3 +45,9 @@ Image.create!(product_id: 13, url: "https://images-na.ssl-images-amazon.com/imag
 Image.create!(product_id: 14, url: "https://images-na.ssl-images-amazon.com/images/I/817VZsCODgL._SL1500_.jpg")
 Image.create!(product_id: 15, url: "https://images-na.ssl-images-amazon.com/images/I/813p1x7Vc8L._SL1200_.jpg")
 Image.create!(product_id: 16, url: "https://images-na.ssl-images-amazon.com/images/I/71EFb-BEAeL._SL1400_.jpg")
+
+Category.create!(name: "Pop")
+Category.create!(name: "Country")
+Category.create!(name: "Rap")
+Category.create!(name: "Rock")
+Category.create!(name: "House")
