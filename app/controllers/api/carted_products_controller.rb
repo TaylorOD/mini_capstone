@@ -2,7 +2,7 @@ class Api::CartedProductsController < ApplicationController
   before_action :authenticate_user
 
   def index
-    @carted_products = current_user.carted_products
+    @carted_products = current_user.carted_products.where(status: "carted")
     render "index.json.jb"
   end
 
@@ -14,7 +14,7 @@ class Api::CartedProductsController < ApplicationController
       status: "carted",
     )
     if @carted_product.save
-      render json: { message: "Carted!" }, status: :created
+      render "show.json.jb"
     else
       render json: { message: "Error - Figure it out!" }, status: :bad_request
     end
