@@ -3,36 +3,17 @@ class Api::ProductsController < ApplicationController
 
   def index
     # http://localhost:3000/api/products?search=search_text - url example
-    @products = Product.all
-
-    if params[:search]
-      @products = @products.where("name ILIKE?", "%#{params[:search]}%")
-    end
+    @products = Product
+      .title_search(params[:search])
+      .discounted(params[:discount])
+      .sorted(params[:sort], params[:sort_order])
 
     if params[:category]
       category = Category.find_by(name: params[:category])
       @products = category.products
     end
 
-    if params[:discount] == "true"
-      @products = @products.where("price < ?", 20)
-    end
-
-    if params[:sort] == "price" && params[:sort_order] == "desc"
-      @products = @products.order(:price => :desc)
-    elsif params[:sort] == "price" && params[:sort_order] == "asc"
-      @products = @products.order(:price => :asc)
-    else
-      @products = @products.order(:id => :asc)
-    end
-
     render "index.json.jb"
-  end
-
-  def show
-    # http://localhost:3000/api/products/1
-    @product = Product.find_by(id: params[:id])
-    render "show.json.jb"
   end
 
   def create
@@ -50,13 +31,18 @@ class Api::ProductsController < ApplicationController
     end
   end
 
+  def show
+    # http://localhost:3000/api/products/1
+    @product = Product.find_by(id: params[:id])
+    render "show.json.jb"
+  end
+
   def update
     if current_user
       @product = Product.find_by(id: params[:id])
       @product.name = params[:name] || @product.name
       @product.price = params[:price] || @product.price
       @product.description = params[:description] || @product.description
-
       if @product.save
         render "show.json.jb"
       else
