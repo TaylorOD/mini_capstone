@@ -13,7 +13,7 @@ class Api::OrdersController < ApplicationController
     calculated_total = 0
     carted_products.each do |carted_product|
       calculated_subtotal += carted_product.quantity * carted_product.product.price
-      calculated_tax += carted_product.quantity * carted_product.calculated_tax
+      calculated_tax += carted_product.quantity * carted_product.product.tax
     end
     calculated_total = calculated_subtotal + calculated_tax
     @order = Order.new(
