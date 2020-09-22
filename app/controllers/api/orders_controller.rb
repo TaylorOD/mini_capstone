@@ -6,30 +6,22 @@ class Api::OrdersController < ApplicationController
     render "index.json.jb"
   end
 
-  def show
-    @order = current_user.orders.find_by(id: params[:id])
-    render "show.json.jb"
-  end
-
   def create
     carted_products = current_user.carted_products.where(status: "carted")
     calculated_subtotal = 0
     calculated_tax = 0
     calculated_total = 0
-
     carted_products.each do |carted_product|
       calculated_subtotal += carted_product.quantity * carted_product.product.price
-      calculated_tax += carted_product.quantity * 0.09
+      calculated_tax += carted_product.quantity * carted_product.calculated_tax
     end
     calculated_total = calculated_subtotal + calculated_tax
-
     @order = Order.new(
       user_id: current_user.id,
       subtotal: calculated_subtotal,
       tax: calculated_tax,
       total: calculated_total,
     )
-
     if @order.save
       carted_products.each do |carted_product|
         carted_product.status = "purchased"
@@ -38,14 +30,19 @@ class Api::OrdersController < ApplicationController
       end
       render "show.json.jb"
     else
-      render json: { errors: user.errors.full_messages }, status: :bad_request
+      render json: { errors: @order.errors.full_messages }, status: :bad_request
     end
+  end
 
-    def destroy
-      carted_product = CartedProduct.find_by(id: params[:id])
-      carted_product.status = "removed"
-      carted_product.save
-      render json: { message: "Product removed from cart." }
-    end
+  def show
+    @order = current_user.orders.find_by(id: params[:id])
+    render "show.json.jb"
+  end
+
+  def destroy
+    carted_product = CartedProduct.find_by(id: params[:id])
+    carted_product.status = "removed"
+    carted_product.save
+    render json: { message: "Product removed from cart." }
   end
 end
