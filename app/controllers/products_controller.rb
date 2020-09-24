@@ -13,10 +13,12 @@ class ProductsController < ApplicationController
       name: params[:name],
       price: params[:price],
       description: params[:description],
+      supplier_id: params[:supplier_id],
 
     )
     @product.save
-    render "show.html.erb"
+    redirect_to "/products/"
+    # redirect_to "/products/${@product.id}"
   end
 
   def show
