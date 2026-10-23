@@ -1,0 +1,22 @@
+name: Cart authorization regression checks
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  cart-removal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: false
+      - run: ruby -c app/controllers/api/carted_products_controller.rb
+      - run: ruby -c config/routes.rb
+      - run: ruby test/security/cart_removal_test.rb
