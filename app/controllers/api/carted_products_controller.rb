@@ -21,8 +21,17 @@ class Api::CartedProductsController < ApplicationController
   end
 
   def destroy
-    carted_product = CartedProduct.find_by(id: params[:id])
+    carted_product = current_user.carted_products.where(status: "carted").find_by(id: params[:id])
+    unless carted_product
+      render json: { error: "Cart item not found" }, status: :not_found
+      return
+    end
+
     carted_product.status = "removed"
-    carted_product.saverender json: { status: "Carted product successfully removed!" }
+    if carted_product.save
+      render json: { status: "Carted product successfully removed!" }
+    else
+      render json: { error: "Could not remove cart item" }, status: :unprocessable_entity
+    end
   end
 end
